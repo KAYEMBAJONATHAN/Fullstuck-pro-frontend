@@ -15,7 +15,8 @@
     "extends": [
       "airbnb",
       "plugin:react/recommended",
-      "plugin:react-hooks/recommended"
+      "plugin:react-hooks/recommended",
+      "react-app" // Add this line for CRA-based projects
     ],
     "plugins": [
       "react"
@@ -36,12 +37,9 @@
     },
     "overrides": [
       {
-  
-        // feel free to replace with your preferred file pattern - eg. 'src/**/*Slice.js' or 'redux/**/*Slice.js'
         "files": [
           "src/**/*Slice.js"
         ],
-        // avoid state param assignment
         "rules": {
           "no-param-reassign": [
             "error",
