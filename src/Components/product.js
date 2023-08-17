@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './Api/productApi';
+import './product.css';
 
 const Product = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
+  const product = useSelector((state) => state.products.products);
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {

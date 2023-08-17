@@ -1,15 +1,18 @@
 import axios from 'axios';
 
-const API_URL = '';
-
-export const fetchCartItems = () => {
-  return axios.get(`${API_URL}/cart`);
+export const fetchCartItemsAPI = async () => {
+  try {
+    const response = await axios.get('/api/v1/carts/');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const addToCartAPI = (item) => {
-  return axios.post(`${API_URL}/cart`, item);
+  return axios.post('/api/v1/carts', item);
 };
 
 export const removeFromCartAPI = (itemId) => {
-  return axios.delete(`${API_URL}/cart/${itemId}`);
+  return axios.delete(`/api/v1/carts/${itemId}`);
 };

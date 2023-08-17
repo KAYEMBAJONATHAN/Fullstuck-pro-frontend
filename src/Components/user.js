@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { fetchUsers } from './Api/userApi';
 
 const User = () => {
-const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
-        try {
-            const fetchedUsers = await fetchUsers();
-            setUsers(fetchedUsers);
-        } catch (error) {
-            console.error('Error fetching data', error)
-        }
+      try {
+        const fetchedUsers = await fetchUsers();
+        setUsers(fetchedUsers);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
     };
 
-    getUsers
+    getUsers();
   }, []);
 
   return (

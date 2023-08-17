@@ -1,11 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart } from '../redux/slices/cartSlice';
-import { fetchCartItems, removeFromCartAPI } from './Api/cartApi';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCartItemsAPI, removeFromCartAPI } from "./Api/cartApi"; // Check if the import path is correct
+import { removeFromCart } from "../redux/slices/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Fetch cart items from the backend
+    fetchCartItemsAPI()
+      .then((data) => {
+        // Dispatch fetched items to Redux store
+        dispatch(fetchCartItems(data));
+      })
+      .catch((error) => {
+        console.error("Error fetching cart items:", error);
+      });
+  }, [dispatch]);
 
   const handleRemoveFromCart = async (itemId) => {
     try {
@@ -15,7 +27,7 @@ const Cart = () => {
       // Remove from Redux store
       dispatch(removeFromCart(itemId));
     } catch (error) {
-      console.error('Error removing item from cart:', error);
+      console.error("Error removing item from cart:", error);
     }
   };
 
