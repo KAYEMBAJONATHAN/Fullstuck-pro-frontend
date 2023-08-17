@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCartItemsAPI, removeFromCartAPI } from "./Api/cartApi"; // Check if the import path is correct
+import { fetchCartItemsAPI, removeFromCartAPI } from "./Api/cartApi";
 import { removeFromCart } from "../redux/slices/cartSlice";
 
 const Cart = () => {

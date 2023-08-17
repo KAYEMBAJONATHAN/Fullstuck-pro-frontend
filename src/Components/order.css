@@ -1,0 +1,44 @@
+.order {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .order h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .order ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .order li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .order li:last-child {
+    border-bottom: none;
+  }
+  
+  .order li span {
+    font-weight: bold;
+  }
+  
+  .order li br {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .order li br {
+      display: block;
+      content: ' ';
+      margin: 5px 0;
+    }
+  }
+  

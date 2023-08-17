@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { fetchOrders } from './Api/orderApi'; // Import your API function
+import { fetchOrders } from './Api/orderApi';
+import './order.css';
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -7,7 +8,7 @@ const Order = () => {
   useEffect(() => {
     const getOrders = async () => {
       try {
-        const fetchedOrders = await fetchOrders(); // Call your fetchOrders function
+        const fetchedOrders = await fetchOrders();
         setOrders(fetchedOrders);
       } catch (error) {
         console.error('Error fetching orders', error);
@@ -22,9 +23,14 @@ const Order = () => {
       <h2>Orders</h2>
       <ul>
         {orders.map((order) => (
-          <li key={order._id}>{/* Use the appropriate field from your order object */}</li>
-        ))}
-      </ul>
+         <li key={order._id}>
+          Order ID: {order._id}<br />
+          Total Price: ${order.totalPrice}<br />
+          Status: {order.status}<br />
+          Shipping Address: {order.shippingAddress1}, {order.city}, {order.country}<br />
+       </li> 
+       ))}
+     </ul>
     </div>
   );
 };
