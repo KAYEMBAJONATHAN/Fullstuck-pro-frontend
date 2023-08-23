@@ -12,13 +12,13 @@ const cartSlice = createSlice({
       state.items.push(action.payload);
     },
     removeFromCart: (state, action) => {
-      state.items = state.items.filter(item => item.id !== action.payload);
+      state.items = state.items.filter(itemId => itemId.id !== action.payload);
     },
     clearCart: (state) => {
       state.items = [];
     },
     fetchCartItems: (state, action) => {
-      state.items = action.payload;
+      state.items = action.payload || [];
     },
   },
 });

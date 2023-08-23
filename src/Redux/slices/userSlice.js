@@ -9,12 +9,14 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     adduser: (state, action) => {
-      state.orders.push(action.payload);
+      state.users.push(action.payload);
     },
-    // Other order-related reducer logic
+    fetchUsers: (state, action) => {
+      state.users = action.payload;
+    } 
   },
 });
 
-export const { adduser } = userSlice.actions;
+export const { adduser,  fetchUsers } = userSlice.actions;
 
 export default userSlice.reducer;

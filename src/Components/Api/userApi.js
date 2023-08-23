@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/v1/users';
+const API_URL = 'http://localhost:3000/api/v1/users/';
 
-export const fetchUsers = async () => {
+export const fetchUsersAPI = async () => {
   try {
     const response = await axios.get(`${API_URL}/users`);
     return response.data;

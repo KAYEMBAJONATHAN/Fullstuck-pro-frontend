@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { fetchUsers } from './Api/userApi';
+import React, { useEffect} from 'react';
+import { fetchUsersAPI } from './Api/userApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { adduser } from "../redux/slices/userSlice"
 
 const User = () => {
-  const [users, setUsers] = useState([]);
+  const users = useSelector((state) => state.users.users);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const fetchedUsers = await fetchUsers();
-        setUsers(fetchedUsers);
-      } catch (error) {
-        console.error('Error fetching data', error);
-      }
-    };
+    fetchUsersAPI()
+      .then((data) => {
+        dispatch(adduser(data));
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, [dispatch]);
 
-    getUsers();
-  }, []);
-
-  return (
+  return  (
     <div className="user">
       <h2>Users</h2>
       <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
+        {users && users.map((user) => (
+          <li key={user._id}>{user.name}</li>
         ))}
       </ul>
     </div>

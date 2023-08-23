@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCartItemsAPI, removeFromCartAPI } from "./Api/cartApi";
-import { removeFromCart } from "../redux/slices/cartSlice";
+import { fetchCartItems, removeFromCart } from "../redux/slices/cartSlice";
+import './cart.css';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -34,11 +35,11 @@ const Cart = () => {
   return (
     <div className="cart">
       <h2>Cart</h2>
-      {cartItems.map((item) => (
-        <div key={item.product._id} className="cart-item">
-          <p>{item.product.name}</p>
+      {cartItems.map((item, index) => (
+        <div key={index} className="cart-item">
+          <p>{item.product && item.product.name}</p>
           <p>Quantity: {item.quantity}</p>
-          <button onClick={() => handleRemoveFromCart(item.product._id)}>
+          <button onClick={() => handleRemoveFromCart(item.product_id)}>
             Remove
           </button>
         </div>
