@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:3000/api/v1/users/';
 
 export const fetchUsersAPI = async () => {
   try {
-    const response = await axios.get(`${API_URL}/users`);
+    const response = await axios.get(API_URL);
     return response.data;
   } catch (error) {
     throw error;

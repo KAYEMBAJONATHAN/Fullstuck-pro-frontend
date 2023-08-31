@@ -1,10 +1,12 @@
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from './Api/productApi';
-import { setProducts } from '../redux/slices/productSlice'
-
+import { setProducts } from '../redux/slices/productSlice';
+import { addToCart } from '../redux/slices/cartSlice';
+import { fetchCartItemsAPI } from './Api/cartApi';
+import { fetchCartItems } from '../redux/slices/cartSlice'; // Import fetchCartItems
 import './product.css';
+
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,7 @@ const Product = () => {
     const loadProducts = async () => {
       try {
         const fetchedProducts = await fetchProducts();
-        dispatch(setProducts(fetchedProducts)); // Dispatch the entire fetchedProducts array
+        dispatch(setProducts(fetchedProducts));
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -23,9 +25,15 @@ const Product = () => {
     loadProducts();
   }, [dispatch]);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     // Cart logic
-    console.log('Adding to cart:', product);
+    dispatch(addToCart(product));
+    try {
+      const updatedCartItems = await fetchCartItemsAPI();
+      dispatch(fetchCartItems(updatedCartItems)); // Corrected action name here
+    } catch (error) {
+      console.error("Error fetching updated cart items:", error);
+    }
   };
 
   return (

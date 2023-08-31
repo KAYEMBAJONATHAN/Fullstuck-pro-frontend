@@ -1,7 +1,8 @@
 import React, { useEffect} from 'react';
 import { fetchUsersAPI } from './Api/userApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { adduser } from "../redux/slices/userSlice"
+import { fetchUsers } from "../redux/slices/userSlice";
+import './users.css';
 
 const User = () => {
   const users = useSelector((state) => state.users.users);
@@ -10,7 +11,7 @@ const User = () => {
   useEffect(() => {
     fetchUsersAPI()
       .then((data) => {
-        dispatch(adduser(data));
+        dispatch(fetchUsers(data));
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -22,7 +23,10 @@ const User = () => {
       <h2>Users</h2>
       <ul>
         {users && users.map((user) => (
-          <li key={user._id}>{user.name}</li>
+          <li 
+             key={user.id}>
+                 {user.name}
+          </li>
         ))}
       </ul>
     </div>

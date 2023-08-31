@@ -24,13 +24,18 @@ const Cart = () => {
     try {
       // Remove from backend
       await removeFromCartAPI(itemId);
-
+  
       // Remove from Redux store
       dispatch(removeFromCart(itemId));
     } catch (error) {
       console.error("Error removing item from cart:", error);
+  
+      if (error.response) {
+        console.error("Axios error response:", error.response.data);
+      }
     }
   };
+  
 
   return (
     <div className="cart">
